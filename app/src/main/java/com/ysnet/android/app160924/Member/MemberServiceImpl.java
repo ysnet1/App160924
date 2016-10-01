@@ -1,14 +1,19 @@
 package com.ysnet.android.app160924.Member;
 
+import android.content.Context;
 import android.util.Log;
+
+import com.ysnet.android.app160924.Util.Retval;
 
 /**
  * Created by Young on 2016-10-01.
  */
 
 public class MemberServiceImpl implements MemberService{
-    MemberDAO dao=new MemberDAO();
-
+    MemberDAO dao;
+    public MemberServiceImpl(Context context){
+        this.dao = new MemberDAO(context);
+    }
     @Override
     public MemberDTO login(MemberDTO param) {
         Log.i("=Impl>> DAO에서 받은 id : ",param.getId());
@@ -30,7 +35,15 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public MemberDTO join(MemberDTO member) {
-        return null;
+    public Retval join(MemberDTO param) {
+        Log.i("Service에서 받은 id : ",param.getId());
+        Log.i("Service에서 받은 pw : ",param.getPw());
+        Log.i("Service에서 받은 name : ",param.getName());
+        Log.i("Service에서 받은 email : ",param.getEmail());
+        Log.i("Service에서 받은 addr : ",param.getAddr());
+        Log.i("Service에서 받은 phone : ",param.getPhone());
+        Log.i("Service에서 받은 image : ",param.getProfileImg());
+        return  dao.insert(param);
+
     }
 }

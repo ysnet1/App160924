@@ -1,5 +1,6 @@
 package com.ysnet.android.app160924.Member;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,13 +13,13 @@ import com.ysnet.android.app160924.R;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     Button bt_login,bt_join;
     EditText et_id,et_pw;
-    MemberService service = new MemberServiceImpl();
+    MemberService service ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        service = new MemberServiceImpl(this.getApplicationContext());
         bt_login = (Button)findViewById(R.id.bt_login);
         bt_join =(Button)findViewById(R.id.bt_login);
         et_id = (EditText)findViewById(R.id.et_id);
@@ -57,6 +58,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.bt_join:
 
+                startActivity(new Intent(LoginActivity.this, JoinActivity.class));
                 break;
         }
 
