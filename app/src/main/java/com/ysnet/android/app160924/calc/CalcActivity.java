@@ -1,4 +1,4 @@
-package com.ysnet.android.app160924;
+package com.ysnet.android.app160924.calc;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,11 +7,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.ysnet.android.app160924.R;
+
 public class CalcActivity extends AppCompatActivity implements View.OnClickListener{
     EditText et_num_1,et_num_2;
     Button bt_plus,bt_minus,bt_multiply,bt_devide,bt_equal;
     TextView tv_calc;
     int result;
+    CalcService service = new CalcServiceImpl();
+    CalcDTO cal = new CalcDTO();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,21 +40,21 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int num1 = Integer.parseInt(et_num_1.getText().toString());
         int num2 = Integer.parseInt(et_num_2.getText().toString());
-
+        cal.setNum1(num1);
+        cal.setNum2(num2);
 
         switch (v.getId()){
             case R.id.bt_plus :
-                  result = num1 + num2;
-
+                 result = service.plus(cal).getResult();
                 break;
             case R.id.bt_minus :
-                result = num1 - num2;
+                result = service.minus(cal).getResult();
                 break;
             case R.id.bt_multiply :
-                result = num1 * num2;
+                result = service.multi(cal).getResult();
                 break;
             case R.id.bt_devide :
-                result = num1 / num2;
+                result = service.devide(cal).getResult();
                 break;
             case R.id.bt_equal :
                 tv_calc.setText("계산결과 : " + result);

@@ -17,9 +17,16 @@
         android:textSize="50dp"
         android:layout_weight="0.26" />
     <Button
+        android:id="@+id/bt_calc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CALC"/>
+
+    <Button
+        android:text="Contexts"
+        android:id="@+id/bt_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 
